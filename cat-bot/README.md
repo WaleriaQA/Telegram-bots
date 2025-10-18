@@ -36,15 +36,25 @@ After you start the bot with `/start`, you’ll see a simple menu with **three b
 ## 📁 Project Structure
 
 cat-bot/
+
 ├─ netlify/
+
 │ └─ functions/
+
 │ └─ bot.js # Main bot logic (webhook)
+
 ├─ config.js # API keys and configuration
+
 ├─ weather.js # Handles weather requests
+
 ├─ cat.js # Handles cat picture requests
+
 ├─ menu.js # Displays and closes the menu
+
 ├─ netlify.toml # Netlify deployment settings
+
 ├─ package.json
+
 ├─ .gitignore
 
 
