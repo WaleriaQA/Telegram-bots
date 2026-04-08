@@ -5,6 +5,9 @@ A simple **Telegram bot** built with **Node.js** and **JavaScript** that shows t
 This project is made for educational purposes — to demonstrate how to use **Telegraf**, **Axios**, and **Netlify Functions** to deploy a Telegram bot without running your own server.
 
 ---
+## 🤖 Live Demo
+
+👉 https://t.me/waleriaqacat_bot
 
 ## 🚀 Features
 
