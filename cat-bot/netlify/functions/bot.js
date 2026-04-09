@@ -1,3 +1,4 @@
+// netlify/functions/bot.js
 import { Telegraf } from "telegraf";
 import { config } from "../../config.js";
 import { getWeather } from "../../weather.js";
@@ -5,6 +6,7 @@ import { getCat } from "../../cat.js";
 import { showMenu, closeMenu } from "../../menu.js";
 
 const bot = new Telegraf(config.telegramToken);
+
 bot.start((ctx) => ctx.reply('Welcome to the cat bot. Write "Menu"'));
 
 bot.on("message", async (ctx) => {
@@ -23,22 +25,31 @@ bot.on("message", async (ctx) => {
   }
 });
 
+// ⚠️ Ключевая часть — функция handler для Netlify
 export const handler = async (event) => {
   try {
+    // Защита от пустого body
+    if (!event.body) {
+      console.warn("Empty body received");
+      return {
+        statusCode: 200,
+        body: "No body",
+      };
+    }
     const body = JSON.parse(event.body);
+
+    // Telegram всегда шлёт объект update
     await bot.handleUpdate(body);
+
+    return {
+      statusCode: 200,
+      body: "OK",
+    };
   } catch (err) {
-    console.error("Error in webhook:", err);
+    console.error("Webhook error:", err.message);
+    return {
+      statusCode: 200, // даже при ошибке Telegram должен получить 200, иначе 502
+      body: "Error",
+    };
   }
-
-  return {
-    statusCode: 200,
-    body: "OK",
-  };
 };
-
-// 🚧 Only for the local testing purposes.
-if (process.env.NODE_ENV !== "production") {
-  bot.launch();
-  console.log("✅ Bot is running locally...");
-}

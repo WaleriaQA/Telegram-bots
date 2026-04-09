@@ -1,11 +1,9 @@
 {
   "name": "cat-bot",
   "version": "1.0.0",
-  "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "waleriaqa",
   "license": "ISC",
